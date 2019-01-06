@@ -1,0 +1,8 @@
+{
+  "description": "Everyday in every way it's getting better and better",
+  "weight": 80,
+  "containers": [
+    {"customer_id": "cust001", "user_id": "user001", "origin":  "Tehran, Iran"}
+  ],
+  "vessel_id": "vessel001"
+}
