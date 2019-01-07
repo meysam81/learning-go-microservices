@@ -4,7 +4,8 @@ import (
 	pb "../consignment-service/proto/consignment"
 	"context"
 	"encoding/json"
-	"google.golang.org/grpc"
+	microclient "github.com/micro/go-micro/client"
+	"github.com/micro/go-micro/cmd"
 	"io/ioutil"
 	"log"
 	"os"
@@ -27,13 +28,9 @@ func parseFile(file string) (*pb.Consignment, error) {
 }
 
 func main() {
-	conn, err := grpc.Dial(ADDRESS, grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("Could not establish connection: %v", err)
-	}
+	cmd.Init()
 
-	defer conn.Close()
-	client := pb.NewShippingServiceClient(conn)
+	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microclient.DefaultClient)
 
 	file := DEFAULT_FILENAME
 	if len(os.Args) > 1 {
@@ -61,7 +58,6 @@ func main() {
 		log.Fatalf("Could not get all: %v", err)
 	}
 
-	log.Printf("Created: %t", r.Created)
 	for _, v := range getAll.Consignments {
 		log.Println(v)
 	}
