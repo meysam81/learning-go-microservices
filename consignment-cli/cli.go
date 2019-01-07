@@ -15,7 +15,7 @@ const (
 	DEFAULT_FILENAME = "consignment.json"
 )
 
-func parseFile(file string) (*pb.Consignment, error)  {
+func parseFile(file string) (*pb.Consignment, error) {
 	var consignment *pb.Consignment
 	data, err := ioutil.ReadFile(file)
 	if err != nil {
