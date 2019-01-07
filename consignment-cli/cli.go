@@ -1,11 +1,11 @@
 package main
 
 import (
-	pb "../consignment-service/proto/consignment"
 	"context"
 	"encoding/json"
 	microclient "github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
+	pb "gotut/consignment-service/proto/consignment"
 	"io/ioutil"
 	"log"
 	"os"

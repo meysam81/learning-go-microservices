@@ -1,9 +1,9 @@
 package main
 
 import (
-	pb "./proto/consignment"
 	"context"
 	"github.com/micro/go-micro"
+	pb "gotut/consignment-service/proto/consignment"
 	"log"
 )
 
