@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"github.com/micro/go-micro"
-	pb "gotut/consignment-service/proto/consignment"
+	pb "github.com/meysam81/learning-go-microservices/consignment-service/proto/consignment"
 	"log"
 )
 

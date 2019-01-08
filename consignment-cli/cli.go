@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	microclient "github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
-	pb "gotut/consignment-service/proto/consignment"
+	pb "github.com/meysam81/learning-go-microservices/consignment-service/proto/consignment"
 	"io/ioutil"
 	"log"
 	"os"
