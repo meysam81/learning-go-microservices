@@ -3,17 +3,16 @@ package main
 import (
 	"context"
 	"encoding/json"
-	microclient "github.com/micro/go-micro/client"
+	microClient "github.com/micro/go-micro/client"
 	"github.com/micro/go-micro/cmd"
-	pb "github.com/meysam81/learning-go-microservices/consignment-service/proto/consignment"
+	pb "gotut/consignment-service/proto/consignment"
 	"io/ioutil"
 	"log"
 	"os"
 )
 
 const (
-	ADDRESS          = "localhost:8000"
-	DEFAULT_FILENAME = "consignment.json"
+	defaultFilename = "consignment.json"
 )
 
 func parseFile(file string) (*pb.Consignment, error) {
@@ -23,16 +22,17 @@ func parseFile(file string) (*pb.Consignment, error) {
 		return nil, err
 	}
 
-	json.Unmarshal(data, &consignment)
+	_ = json.Unmarshal(data, &consignment)
 	return consignment, err
 }
 
 func main() {
-	cmd.Init()
+	_ = cmd.Init()
 
-	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microclient.DefaultClient)
+	client := pb.NewShippingServiceClient("go.micro.srv.consignment", microClient.DefaultClient)
+	//log.Printf("client: %v" , client)
 
-	file := DEFAULT_FILENAME
+	file := defaultFilename
 	if len(os.Args) > 1 {
 		file = os.Args[1]
 	}
@@ -43,7 +43,7 @@ func main() {
 		log.Fatalf("Could not parse file: %v", err)
 	}
 
-	r, err := client.CreateConsignment(context.Background(), consignment)
+	r, err := client.CreateConsignment(context.TODO(), consignment)
 	if err != nil {
 		log.Fatalf("Could not greet: %v", err)
 	}
@@ -53,7 +53,7 @@ func main() {
 		log.Printf("Consignment: %t", r.Consignment)
 	}
 
-	getAll, err := client.GetConsignment(context.Background(), &pb.GetRequest{})
+	getAll, err := client.GetConsignments(context.Background(), &pb.GetRequest{})
 	if err != nil {
 		log.Fatalf("Could not get all: %v", err)
 	}
