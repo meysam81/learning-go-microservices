@@ -2,14 +2,9 @@ package main
 
 import (
 	"context"
-	"github.com/micro/go-micro"
-	pb "github.com/meysam81/learning-go-microservices/consignment-service/proto/consignment"
+	micro "github.com/micro/go-micro"
+	pb "gotut/consignment-service/proto/consignment"
 	"log"
-)
-
-const (
-	PORT    = ":8000"
-	NETWORK = "tcp"
 )
 
 type IRepository interface {
@@ -45,7 +40,7 @@ func (s *service) CreateConsignment(ctx context.Context, req *pb.Consignment, re
 	return nil
 }
 
-func (s *service) GetConsignment(ctx context.Context, req *pb.GetRequest, res *pb.Response) error {
+func (s *service) GetConsignments(ctx context.Context, req *pb.GetRequest, res *pb.Response) error {
 	consignments := s.repo.GetAll()
 	res.Consignments = consignments
 	return nil
