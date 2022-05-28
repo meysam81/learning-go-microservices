@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:11
 
 RUN mkdir -p /app
 WORKDIR /app
